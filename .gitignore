@@ -1,0 +1,16 @@
+# User's actual inventory
+inventory.yml
+
+# Sensitive — passwords, vault keys
+*.vault_pass
+.vault_pass
+
+# Editor / OS junk
+*.swp
+.DS_Store
+.vscode/
+.idea/
+
+# Ansible runtime
+*.retry
+collections/
