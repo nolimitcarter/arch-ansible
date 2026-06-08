@@ -1,0 +1,60 @@
+---
+# ============================================================
+# Arch Installer — global defaults. Edit to taste.
+# Per-profile overrides live in workstations.yml / servers.yml.
+# ============================================================
+
+# ---- Target disk (WILL BE WIPED) ----
+# Prefer a stable /dev/disk/by-id/... path on real hardware.
+install_disk: /dev/sda
+
+# ---- LUKS encryption ----
+# The passphrase is read from a file OUTSIDE this repo so it never
+# touches git. Create it before running:
+#   mkdir -p ~/.config/ansible-arch-installer
+#   printf '%s' 'your-strong-passphrase' > ~/.config/ansible-arch-installer/luks.key
+#   chmod 600 ~/.config/ansible-arch-installer/luks.key
+luks_key_path: "~/.config/ansible-arch-installer/luks.key"
+
+# ---- System basics ----
+system_hostname: archlinux
+system_timezone: America/New_York
+system_locale: en_US.UTF-8
+system_keymap: us
+
+# ---- Primary user (non-root, sudo via wheel) ----
+primary_user:
+  name: arch
+  # Generate with: mkpasswd --method=sha-512
+  # This is a HASH, not plaintext. Replace the placeholder.
+  password_hash: "REPLACE_ME"
+  shell: /bin/bash
+  groups:
+    - wheel
+
+# ---- Profile (overridden by group_vars/workstations.yml etc.) ----
+install_profile: server
+
+# ---- Base packages (every install) ----
+base_packages:
+  - base
+  - base-devel
+  - linux
+  - linux-firmware
+  - linux-headers
+  - sudo
+  - vim
+  - networkmanager
+  - openssh
+  - git
+  - man-db
+  - man-pages
+
+# ---- Services enabled in the installed system ----
+enabled_services:
+  - NetworkManager
+  - sshd
+  - systemd-timesyncd
+
+# ---- Reboot into the new system when done? ----
+reboot_after_install: true

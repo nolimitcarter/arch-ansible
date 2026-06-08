@@ -1,12 +1,12 @@
-# User's actual inventory
-inventory.yml
-
-# Sensitive — passwords, vault keys
+# Secrets 
 *.vault_pass
 .vault_pass
+*.key
+keyfile
 
-# Editor / OS junk
+# Editor 
 *.swp
+*.swo
 .DS_Store
 .vscode/
 .idea/

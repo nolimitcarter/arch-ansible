@@ -1,0 +1,25 @@
+---
+# ============================================================
+# EDIT before running.
+#
+# Set ansible_host to the IP of the machine booted from the Arch ISO.
+# You'll be prompted for the ISO's root password at runtime (--ask-pass),
+# so no password is stored in this file.
+#
+# Put the host under 'workstations' or 'servers' to choose its profile.
+# All other settings live in group_vars/all.yml.
+# ============================================================
+
+all:
+  children:
+    workstations:
+      hosts:
+        target:
+          ansible_host: 192.168.1.100
+          ansible_user: root
+
+    servers:
+      hosts:
+        # lab-vm-01:
+        #   ansible_host: 10.10.10.50
+        #   ansible_user: root
